@@ -73,6 +73,7 @@ new Vue({
     checkWin(player) {
       if (player <= 0) {
         this.gameRunning = false;
+        this.log = [];
         return true;
       }
 
