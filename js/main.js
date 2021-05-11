@@ -42,29 +42,29 @@ new Vue({
 
     // game actions
     playerAttack(min, max) {
+      if (this.checkWin(this.monsterHealth)) {
+        alert("You Won!!!!");
+        return;
+      }
       var damage = this.calculateDamage(min, max);
       this.monsterHealth -= damage;
       this.log.unshift({
         isPlayer: true,
         text: "Player hits monster for " + damage,
       });
-      if (this.checkWin(this.monsterHealth)) {
-        alert("You Won!!!!");
-        return;
-      }
     },
 
     monsterAttack(min, max) {
+      if (this.checkWin(this.playerHealth)) {
+        alert("You Lost!!!!");
+        return;
+      }
       var damage = this.calculateDamage(min, max);
       this.playerHealth -= damage;
       this.log.unshift({
         isPlayer: false,
         text: "Player hits monster for " + damage,
       });
-      if (this.checkWin(this.playerHealth)) {
-        alert("You Lost!!!!");
-        return;
-      }
     },
 
     calculateDamage(min, max) {
